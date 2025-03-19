@@ -1,46 +1,51 @@
 name: Generate Snake
 
-# GitHub Actions'ın hangi zamanlarda çalışacağını belirtiyoruz
 on:
   schedule:
-    # her 6 saatte bir çalışacak cron ifadesi
     - cron: "0 */6 * * *"
-  workflow_dispatch:  # Bu satır, manuel olarak da çalıştırılabilmesini sağlar.
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Bu iş, Ubuntu işletim sistemi üzerinde çalışacak.
+    runs-on: ubuntu-latest
 
     steps:
-    # Repo içeriğini çekiyoruz
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    # Platane/snakes action'ını kullanarak katkı grafiğini oluşturuyoruz
+    # Platane/snakes action'ı ile grafiği oluştur
     - name: Generate Snake GIF
-      uses: Platane/snk@v3  # Güncel versiyon
+      uses: Platane/snk@v3
       with:
-        github_user_name: denizumur  # GitHub kullanıcı adınız
-        gif_out_path: dist/github-contribution-grid-snake.gif  # GIF çıktısının yolu
-        svg_out_path: dist/github-contribution-grid-snake.svg  # SVG çıktısının yolu
+        github_user_name: denizumur
+        gif_out_path: dist/github-contribution-grid-snake.gif
+        svg_out_path: dist/github-contribution-grid-snake.svg
+
+    # Dist dizinini oluştur
+    - name: Create dist directory
+      run: mkdir -p dist
+
+    # Dizin içeriğini kontrol et
+    - name: Check dist directory contents
+      run: ls dist
 
     # Git durumunu kontrol et
     - name: Show git status
       run: git status
 
-    # Değişiklikleri ana dala (master) push et
+    # Değişiklikleri master branch'ine push et
     - name: Push changes
-      uses: ad-m/github-push-action@v0.6.0  # Push işlemi için doğru versiyon
+      uses: ad-m/github-push-action@v0.6.0
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub token'ı ile push
-        branch: output  # Değişikliklerin çıkacağı branch
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: output
         force: true
 
-    # GitHub Pages üzerinden çıktıyı yayınlama
+    # GitHub Pages üzerine deploy et
     - name: Deploy to GitHub Pages
       uses: crazy-max/ghaction-github-pages@v2.1.3
       with:
-        target_branch: output  # Çıktının yayınlanacağı branch
-        build_dir: dist  # Çıktıların bulunduğu dizin
+        target_branch: output
+        build_dir: dist  # Burada dist dizini belirtiliyor
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token'ı
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
