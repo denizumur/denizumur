@@ -1,4 +1,4 @@
-# 💫 About Me:
+
 👋 Merhaba, ben Deniz!<br>Bilgisayar Mühendisliği Öğrencisiyim<br> Python, C#,C++,.NET<br>
 
 
