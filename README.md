@@ -1,5 +1,5 @@
 
-👋 Merhaba, ben Deniz!<br>Bilgisayar Mühendisliği Öğrencisiyim
+👋 Merhaba, ben Deniz!<br>
 
 
 ## 🌐 
