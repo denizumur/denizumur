@@ -1,5 +1,5 @@
 
-👋 Merhaba, ben Deniz!<br>Bilgisayar Mühendisliği Öğrencisiyim<br> Python, C#,C++,.NET<br>
+👋 Merhaba, ben Deniz!<br>Bilgisayar Mühendisliği Öğrencisiyim
 
 
 ## 🌐 
